@@ -2,6 +2,8 @@ import { StyleSheet, View } from 'react-native'
 import React, { useState } from 'react'
 import {Button, Text, TextInput} from 'react-native-paper'
 import Colors from '../constants/colors';
+import { router } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TEST_USER= {
     username: "test@aerlaw.tech",
@@ -11,12 +13,15 @@ const TEST_USER= {
 const login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
 const handleLogin = () => {
     if (username === TEST_USER.username && password === TEST_USER.password) {
         console.log("Login successful");
+        router.replace("/");
+        AsyncStorage.setItem("user", JSON.stringify({ username }));
     } else {
-        console.error("Invalid credentials");
+        setError("Invalid credentials");
     }
 }
 
@@ -29,6 +34,12 @@ const handleLogin = () => {
                 <Text style={[styles.subtitle, { color: Colors.textSecondary }]}>
                     Login
                 </Text>
+
+                {error && (
+                    <Text style={styles.error} variant="headlineSmall">
+                        {error}
+                    </Text>
+                )}
 
                 <TextInput 
                     label="Username" 
@@ -57,7 +68,7 @@ const handleLogin = () => {
                     textColor={Colors.textOnSecondary}
                     buttonColor={Colors.secondary} 
                     disabled={username === "" || password === ""}
-                    onPress={() => {}}
+                    onPress={handleLogin}
                     icon="login"
                 >
                     Se connecter
@@ -115,5 +126,10 @@ const styles = StyleSheet.create({
     outlineStyle: {
         borderWidth: 1.5,
         borderRadius: 16,
+    },
+    error:{
+        color: Colors.error,
+        textAlign: 'center',
+        marginBottom: 16,
     }
 })
