@@ -20,7 +20,34 @@ export default function TabsLayout() {
                 title: "Conteneur Plein",
                 tabBarLabel: "Conteneur",
                 tabBarIcon: ({ color, size }) => (
-                    <Icon name="delete-alert" color={color} size={size} />
+                    <Icon name="alert-box" color={color} size={size} />
+            )
+         }} />
+         <Tabs.Screen 
+            name="gamification" 
+            options={{ 
+                title: "Gamification",
+                tabBarLabel: "Gamification",
+                tabBarIcon: ({ color, size }) => (
+                    <Icon name="star-circle" color={color} size={size} />
+            )
+         }} />
+         <Tabs.Screen 
+            name="historique" 
+            options={{ 
+                title: "Historique",
+                tabBarLabel: "Historique",
+                tabBarIcon: ({ color, size }) => (
+                    <Icon name="history" color={color} size={size} />
+            )
+         }} />
+         <Tabs.Screen 
+            name="horaire" 
+            options={{ 
+                title: "Horaire",
+                tabBarLabel: "Horaire",
+                tabBarIcon: ({ color, size }) => (
+                    <Icon name="calendar-clock" color={color} size={size} />
             )
          }} />
       </Tabs>
