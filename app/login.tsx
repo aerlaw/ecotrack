@@ -56,6 +56,7 @@ const handleLogin = () => {
                     style={styles.button}
                     textColor={Colors.textOnSecondary}
                     buttonColor={Colors.secondary} 
+                    disabled={username === "" || password === ""}
                     onPress={() => {}}
                     icon="login"
                 >
